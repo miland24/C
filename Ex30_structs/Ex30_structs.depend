@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1627945396 source:c:\users\matheusm\desktop\c\ex30_structs\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<time.h>
+

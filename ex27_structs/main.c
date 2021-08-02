@@ -42,6 +42,10 @@ void imprimeRegistros(AVIAO vs[nRegistros])
 int main()
 {
     setlocale(LC_ALL, "");
+    char letra = 'a';
+    int letranum;
+
+    letranum = letra;
 
     AVIAO vetAviao[nRegistros];
 
@@ -49,6 +53,7 @@ int main()
 
     system("cls");
     printf("-----REGISTRO DE VÔOS-----");
+    printf("%i", letranum);
     imprimeRegistros(vetAviao);
 
 }
