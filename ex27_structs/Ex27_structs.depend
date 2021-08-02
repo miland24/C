@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1627935580 source:c:\users\matheusm\desktop\c\ex27_structs\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
