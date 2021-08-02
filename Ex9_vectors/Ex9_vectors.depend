@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1627748655 source:c:\users\vale_\desktop\linguagem c\praticando\ex9_vetores\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+

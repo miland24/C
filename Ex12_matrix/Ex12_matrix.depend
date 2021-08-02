@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1627786213 source:c:\users\vale_\desktop\linguagem c\praticando\ex12_matrizes\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+

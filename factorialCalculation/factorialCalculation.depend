@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1627658860 source:c:\users\vale_\desktop\linguagem c\praticando\calculofatorial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
