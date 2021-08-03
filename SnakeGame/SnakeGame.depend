@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1627955920 source:c:\users\vale_\desktop\c language\snakegame\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
+1628029854 source:c:\users\matheusm\desktop\c\snakegame\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
