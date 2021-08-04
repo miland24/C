@@ -36,6 +36,7 @@ void specifyObstacles(char matrix[boardSIZE][boardSIZE])
 {
     int nObstacles, line, column;
 
+    //Erases matrix in case there's obstacles already in it
     for(int i = 0; i < boardSIZE; i++)
     {
         for(int j = 0; j < boardSIZE; j++)
@@ -44,6 +45,7 @@ void specifyObstacles(char matrix[boardSIZE][boardSIZE])
         }
     }
 
+    //Prints the matrix
     for(int i = 0; i < boardSIZE; i++)
     {
         printf("\n");
@@ -53,6 +55,7 @@ void specifyObstacles(char matrix[boardSIZE][boardSIZE])
         }
     }
 
+    //Collects the number of obstacles and treats invalid number of obstacles
     printf("\n\nType the number of obstacles you want: ");
     scanf("%i", &nObstacles);
 
@@ -62,6 +65,7 @@ void specifyObstacles(char matrix[boardSIZE][boardSIZE])
         scanf("%i", &nObstacles);
     }
 
+    //Insert obstacles and treats invalid index numbers
     for(int i = 0; i < nObstacles; i++)
     {
         system("cls");
@@ -97,6 +101,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
 {
     int pLine, pColumn;
 
+    //Prints the matrix
     for(int i = 0; i < boardSIZE; i++)
     {
         printf("\n");
@@ -106,6 +111,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
         }
     }
 
+    //Collects the indexes where the snake will start and treats invalid indexes
     printf("\n\nType the number of the line you wish the snake to spawn: ");
     scanf("%i", &pLine);
     printf("Type the number of the column you wish the snake to spawn: ");
@@ -131,6 +137,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
     scanf("%i", &pColumn);
     }
 
+    //Erases the matrix in case there's a snake already in it
     for(int i = 0; i < boardSIZE; i++)
     {
         for(int j = 0; j < boardSIZE; j++)
@@ -142,6 +149,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
         }
     }
 
+    //Treats invalid positions and inserts the snake in the matrix
     for(int i = 0; i < snakeSIZE; i++)
     {
         if(i == 0)
