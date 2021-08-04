@@ -111,7 +111,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
     printf("Type the number of the column you wish the snake to spawn: ");
     scanf("%i", &pColumn);
 
-    while(matrix[pLine][pColumn] != ' ' || pLine > boardSIZE || pColumn > boardSIZE)
+    while(matrix[pLine][pColumn] != ' ' || pLine > boardSIZE || pColumn > boardSIZE || pLine < 0 || pColumn < 0)
     {
     system("cls");
 
@@ -149,7 +149,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
             while(matrix[pLine][pColumn] != 'C')
             {
 
-                if(matrix[pLine][pColumn + 1] == ' ')
+                if((matrix[pLine][pColumn + 1] == ' ') && (pColumn + 1 < boardSIZE))
                 {
                     if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
                     {
@@ -166,7 +166,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
                     system("cls");
                     }
                 }
-                else if(matrix[pLine + 1][pColumn] == ' ')
+                else if((matrix[pLine + 1][pColumn] == ' ') && (pLine + 1 < boardSIZE))
                 {
                     if(matrix[pLine][pColumn + 1] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
                     {
@@ -183,7 +183,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
                     system("cls");
                     }
                 }
-                else if(matrix[pLine][pColumn - 1] == ' ')
+                else if((matrix[pLine][pColumn - 1] == ' ') && (pColumn - 1 >= 0))
                 {
                     if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn + 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
                     {
@@ -200,7 +200,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
                     system("cls");
                     }
                 }
-                else if(matrix[pLine - 1][pColumn] == ' ')
+                else if((matrix[pLine - 1][pColumn] == ' ') && (pLine - 1 >= 0))
                 {
                     if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine][pColumn + 1] == ' ')
                     {
@@ -217,26 +217,31 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
                     system("cls");
                     }
                 }
+                else
+                {
+                    printf("Invalid position.");
+                    return;
+                }
             }
         }
         else if(i > 0 && i < 4)
         {
-            if(matrix[pLine][pColumn + 1] == ' ')
+            if((matrix[pLine][pColumn + 1] == ' ') && (pColumn + 1 < boardSIZE))
             {
                 matrix[pLine][pColumn + 1] = '*';
                 pColumn += 1;
             }
-            else if(matrix[pLine + 1][pColumn] == ' ')
+            else if((matrix[pLine + 1][pColumn] == ' ') && (pLine + 1 < boardSIZE))
             {
                 matrix[pLine + 1][pColumn] = '*';
                 pLine += 1;
             }
-            else if(matrix[pLine][pColumn - 1] == ' ')
+            else if((matrix[pLine][pColumn - 1] == ' ') && (pColumn - 1 >= 0))
             {
                 matrix[pLine][pColumn - 1] = '*';
                 pColumn -= 1;
             }
-            else if(matrix[pLine - 1][pColumn] == ' ')
+            else if((matrix[pLine - 1][pColumn] == ' ') && (pLine - 1 >= 0))
             {
                 matrix[pLine - 1][pColumn] = '*';
                 pLine -= 1;
@@ -249,19 +254,19 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
         }
         else
         {
-            if(matrix[pLine][pColumn + 1] == ' ')
+            if((matrix[pLine][pColumn + 1] == ' ') && (pColumn + 1 < boardSIZE))
             {
                 matrix[pLine][pColumn + 1] = '.';
             }
-            else if(matrix[pLine + 1][pColumn] == ' ')
+            else if((matrix[pLine + 1][pColumn] == ' ') && (pLine + 1 < boardSIZE))
             {
                 matrix[pLine + 1][pColumn] = '.';
             }
-            else if(matrix[pLine][pColumn - 1] == ' ')
+            else if((matrix[pLine][pColumn - 1] == ' ') && (pColumn - 1 >= 0))
             {
                 matrix[pLine][pColumn - 1] = '.';
             }
-            else if(matrix[pLine - 1][pColumn] == ' ')
+            else if((matrix[pLine - 1][pColumn] == ' ') && (pLine - 1 >= 0))
             {
                 matrix[pLine - 1][pColumn] = '.';
             }
