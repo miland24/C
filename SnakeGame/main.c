@@ -44,15 +44,50 @@ void specifyObstacles(char matrix[boardSIZE][boardSIZE])
         }
     }
 
-    printf("Type the number of obstacles you want: ");
+    for(int i = 0; i < boardSIZE; i++)
+    {
+        printf("\n");
+        for(int j = 0; j < boardSIZE; j++)
+        {
+            printf("|%c|", matrix[i][j]);
+        }
+    }
+
+    printf("\n\nType the number of obstacles you want: ");
     scanf("%i", &nObstacles);
+
+    while(nObstacles > 100 || nObstacles < 0)
+    {
+        printf("Invalid number of obstacles, type a new number: ");
+        scanf("%i", &nObstacles);
+    }
 
     for(int i = 0; i < nObstacles; i++)
     {
-        printf("Type the line of the number %i obstacle: ", i + 1);
+        system("cls");
+        for(int i = 0; i < boardSIZE; i++)
+        {
+        printf("\n");
+            for(int j = 0; j < boardSIZE; j++)
+            {
+                printf("|%c|", matrix[i][j]);
+            }
+        }
+
+        printf("\n\nType the line of the number %i obstacle: ", i + 1);
         scanf("%i", &line);
         printf("Type the column of the number %i obstacle:", i + 1);
         scanf("%i", &column);
+
+        while(line > boardSIZE || column > boardSIZE || line < 0 || column < 0)
+        {
+        printf("Invalid column or line number, type a valid column/line ");
+        printf("\n\nType the line of the number %i obstacle: ", i + 1);
+        scanf("%i", &line);
+        printf("Type the column of the number %i obstacle:", i + 1);
+        scanf("%i", &column);
+        }
+
         matrix[line][column] = 'X';
     }
     system("cls");
@@ -62,7 +97,16 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
 {
     int pLine, pColumn;
 
-    printf("Type the number of the line you wish the snake to spawn: ");
+    for(int i = 0; i < boardSIZE; i++)
+    {
+        printf("\n");
+        for(int j = 0; j < boardSIZE; j++)
+        {
+            printf("|%c|", matrix[i][j]);
+        }
+    }
+
+    printf("\n\nType the number of the line you wish the snake to spawn: ");
     scanf("%i", &pLine);
     printf("Type the number of the column you wish the snake to spawn: ");
     scanf("%i", &pColumn);
@@ -70,49 +114,109 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
     while(matrix[pLine][pColumn] != ' ' || pLine > boardSIZE || pColumn > boardSIZE)
     {
     system("cls");
-    printf("Invalid position, choose another one.\n");
-    printf("\nType the number of the line you wish the snake to spawn: ");
+
+    for(int i = 0; i < boardSIZE; i++)
+    {
+        printf("\n");
+        for(int j = 0; j < boardSIZE; j++)
+        {
+            printf("|%c|", matrix[i][j]);
+        }
+    }
+
+    printf("\nInvalid position, choose another one.\n");
+    printf("\n\nType the number of the line you wish the snake to spawn: ");
     scanf("%i", &pLine);
     printf("Type the number of the column you wish the snake to spawn: ");
     scanf("%i", &pColumn);
+    }
+
+    for(int i = 0; i < boardSIZE; i++)
+    {
+        for(int j = 0; j < boardSIZE; j++)
+        {
+            if(matrix[i][j] != 'X' && matrix[i][j] != ' ')
+            {
+                matrix[i][j] = ' ';
+            }
+        }
     }
 
     for(int i = 0; i < snakeSIZE; i++)
     {
         if(i == 0)
         {
-            if(matrix[pLine][pColumn + 1] == ' ')
+            while(matrix[pLine][pColumn] != 'C')
             {
-                if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
+
+                if(matrix[pLine][pColumn + 1] == ' ')
                 {
-                    matrix[pLine][pColumn] = 'C';
+                    if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
+                    {
+                        matrix[pLine][pColumn] = 'C';
+                        fflush(stdin);
+                    }
+                    else
+                    {
+                    printf("Invalid position, choose another one.\n");
+                    printf("\nType the number of the line you wish the snake to spawn: ");
+                    scanf("%i", &pLine);
+                    printf("Type the number of the column you wish the snake to spawn: ");
+                    scanf("%i", &pColumn);
+                    system("cls");
+                    }
                 }
-            }
-            else if(matrix[pLine + 1][pColumn] == ' ')
-            {
-                if(matrix[pLine][pColumn + 1] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
+                else if(matrix[pLine + 1][pColumn] == ' ')
                 {
-                    matrix[pLine][pColumn] = 'C';
+                    if(matrix[pLine][pColumn + 1] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
+                    {
+                        matrix[pLine][pColumn] = 'C';
+                        fflush(stdin);
+                    }
+                    else
+                    {
+                    printf("Invalid position, choose another one.\n");
+                    printf("\nType the number of the line you wish the snake to spawn: ");
+                    scanf("%i", &pLine);
+                    printf("Type the number of the column you wish the snake to spawn: ");
+                    scanf("%i", &pColumn);
+                    system("cls");
+                    }
                 }
-            }
-            else if(matrix[pLine][pColumn - 1] == ' ')
-            {
-                if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn + 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
+                else if(matrix[pLine][pColumn - 1] == ' ')
                 {
-                    matrix[pLine][pColumn] = 'C';
+                    if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn + 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
+                    {
+                        matrix[pLine][pColumn] = 'C';
+                        fflush(stdin);
+                    }
+                    else
+                    {
+                    printf("Invalid position, choose another one.\n");
+                    printf("\nType the number of the line you wish the snake to spawn: ");
+                    scanf("%i", &pLine);
+                    printf("Type the number of the column you wish the snake to spawn: ");
+                    scanf("%i", &pColumn);
+                    system("cls");
+                    }
                 }
-            }
-            else if(matrix[pLine - 1][pColumn] == ' ')
-            {
-                if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine][pColumn + 1] == ' ')
+                else if(matrix[pLine - 1][pColumn] == ' ')
                 {
-                    matrix[pLine][pColumn] = 'C';
+                    if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine][pColumn + 1] == ' ')
+                    {
+                        matrix[pLine][pColumn] = 'C';
+                        fflush(stdin);
+                    }
+                    else
+                    {
+                    printf("Invalid position, choose another one.\n");
+                    printf("\nType the number of the line you wish the snake to spawn: ");
+                    scanf("%i", &pLine);
+                    printf("Type the number of the column you wish the snake to spawn: ");
+                    scanf("%i", &pColumn);
+                    system("cls");
+                    }
                 }
-            }
-            else
-            {
-                printf("Invalid position, choose another one.\n");
-                return;
             }
         }
         else if(i > 0 && i < 4)
