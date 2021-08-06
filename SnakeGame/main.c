@@ -1,6 +1,7 @@
 #include <stdio.h>                                         /*Author: Matheus Miland Pimentl do Vale ------- E-mail: matheus.miland@gmail.com*/
 #include <stdlib.h>
 #include <locale.h>
+#include <time.h>
 #define boardSIZE 10
 #define snakeSIZE 5
 
@@ -34,7 +35,7 @@ int menu(char matrix[boardSIZE][boardSIZE])
 
 void specifyObstacles(char matrix[boardSIZE][boardSIZE])
 {
-    int nObstacles, line, column;
+    int nObstacles = -1, line, column;
 
     //Erases matrix in case there's obstacles already in it
     for(int i = 0; i < boardSIZE; i++)
@@ -105,7 +106,7 @@ void specifyObstacles(char matrix[boardSIZE][boardSIZE])
 
 void initialPosition(char matrix[boardSIZE][boardSIZE])
 {
-    int pLine, pColumn;
+    int pLine = -1, pColumn = -1;
 
     //Prints the matrix
     for(int i = 0; i < boardSIZE; i++)
@@ -358,7 +359,95 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
 
 void snakeMovement(char matrix[boardSIZE][boardSIZE])
 {
+    int pLine, pColumn, vecLine[snakeSIZE], vecColumn[snakeSIZE], pos = 0, nMovements = - 1, movement;
+    srand(time(NULL));
 
+    //Prints the matrix
+    for(int i = 0; i < boardSIZE; i++)
+    {
+        printf("\n");
+        for(int j = 0; j < boardSIZE; j++)
+        {
+        printf("|%c|", matrix[i][j]);
+        }
+    }
+
+    //Checks if the movements value is valid and stores it
+    printf("\nHow many movements you wish the snake to make? ");
+    fflush(stdin);
+    scanf("%i", &nMovements);
+
+    while(nMovements < 0)
+    {
+    system("cls");
+
+    for(int i = 0; i < boardSIZE; i++)
+    {
+        printf("\n");
+        for(int j = 0; j < boardSIZE; j++)
+        {
+        printf("|%c|", matrix[i][j]);
+        }
+    }
+
+    printf("\nInvalid number of movements, please type a valid number of movements.");
+    printf("\nHow many movements you wish the snake to make? ");
+    fflush(stdin);
+    scanf("%i", &nMovements);
+    }
+
+    //Generates a random number for the snake to slide.Also checks for obstacles and the end of the board
+    for(int interactions = 0; interactions < nMovements; interactions++)
+    {
+    system("cls");
+
+        for(int i = 0; i < boardSIZE; i++)
+        {
+            printf("\n");
+            for(int j = 0; j < boardSIZE; j++)
+            {
+            printf("|%c|", matrix[i][j]);
+            }
+        }
+
+        for(int i = 0; i < boardSIZE; i++)
+        {
+            for(int j = 0; j < boardSIZE; j++)
+            {
+                if(pos == 0)
+                {
+                    if(matrix[i][j] == 'C')
+                    {
+                        vecLine[pos] = i;
+                        vecColumn[pos] = j;
+                        pos++;
+                    }
+                }
+                else if(pos >= 1 && pos <= 3)
+                {
+                    if(matrix[i][j] == '*')
+                    {
+                        vecLine[pos] = i;
+                        vecColumn[pos] = j;
+                        pos++;
+                    }
+                }
+                else
+                {
+                    if(matrix[i][j] == '.')
+                    {
+                        vecLine[pos] = i;
+                        vecColumn[pos] = j;
+                        pos++;
+                    }
+                }
+            }
+        }
+
+    movement = rand() % 3;
+
+    if(movement == 0)
+    }
 }
 
 int main()
@@ -391,6 +480,7 @@ int main()
 
             case 3:
             snakeMovement(board);
+            break;
 
             case 4:
             printf("GG!");

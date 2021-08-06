@@ -4,8 +4,9 @@
 	<stdlib.h>
 	<locale.h>
 
-1628201466 source:c:\users\matheusm\desktop\c\snakegame\main.c
+1628290947 source:c:\users\matheusm\desktop\c\snakegame\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
+	<time.h>
 
