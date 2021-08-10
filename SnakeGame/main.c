@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <time.h>
+#include <unistd.h>
 #define boardSIZE 10
 #define snakeSIZE 5
 
@@ -359,7 +360,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
 
 void snakeMovement(char matrix[boardSIZE][boardSIZE])
 {
-    int pLine, pColumn, vecLine[snakeSIZE], vecColumn[snakeSIZE], pos = 0, nMovements = - 1, movement;
+    int vecLine[snakeSIZE], vecColumn[snakeSIZE], pos, nMovements = - 1, movement;
     srand(time(NULL));
 
     //Prints the matrix
@@ -396,20 +397,14 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
     scanf("%i", &nMovements);
     }
 
-    //Generates a random number for the snake to slide.Also checks for obstacles and the end of the board
+    //Generates a random number for the snake to move. Also checks for obstacles and the end of the board
     for(int interactions = 0; interactions < nMovements; interactions++)
     {
-    system("cls");
+    sleep(1);
+    //system("cls");
+    pos = 0;
 
-        for(int i = 0; i < boardSIZE; i++)
-        {
-            printf("\n");
-            for(int j = 0; j < boardSIZE; j++)
-            {
-            printf("|%c|", matrix[i][j]);
-            }
-        }
-
+        //Checks the positions the snake is in
         for(int i = 0; i < boardSIZE; i++)
         {
             for(int j = 0; j < boardSIZE; j++)
@@ -443,10 +438,61 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                 }
             }
         }
+        movement = 0;
 
-    movement = rand() % 3;
+        if(movement == 0)
+        {
+            if(matrix[vecLine[0]][vecColumn[0] + 1] == ' ' && vecColumn[0] + 1 < boardSIZE)
+            {
+                matrix[vecLine[0]][vecColumn[0] + 1] = matrix[vecLine[0]][vecColumn[0]];
+                matrix[vecLine[0]][vecColumn[0]] = matrix[vecLine[1]][vecColumn[1]];
+                matrix[vecLine[1]][vecColumn[1]] = matrix[vecLine[2]][vecColumn[2]];
+                matrix[vecLine[2]][vecColumn[2]] = matrix[vecLine[3]][vecColumn[3]];
+                matrix[vecLine[3]][vecColumn[3]] = matrix[vecLine[4]][vecColumn[4]];
+                matrix[vecLine[4]][vecColumn[4]] = ' ';
+            }
+            else if(matrix[vecLine[0] + 1][vecColumn[0]] == ' ' && vecLine[0] + 1 < boardSIZE)
+            {
+                matrix[vecLine[0] + 1][vecColumn[0]] = matrix[vecLine[0]][vecColumn[0]];
+                matrix[vecLine[0]][vecColumn[0]] = matrix[vecLine[1]][vecColumn[1]];
+                matrix[vecLine[1]][vecColumn[1]] = matrix[vecLine[2]][vecColumn[2]];
+                matrix[vecLine[2]][vecColumn[2]] = matrix[vecLine[3]][vecColumn[3]];
+                matrix[vecLine[3]][vecColumn[3]] = matrix[vecLine[4]][vecColumn[4]];
+                matrix[vecLine[4]][vecColumn[4]] = ' ';
+            }
+            else if(matrix[vecLine[0]][vecColumn[0] - 1] == ' ' && vecColumn[0] - 1 >= 0)
+            {
+                matrix[vecLine[0]][vecColumn[0] - 1] = matrix[vecLine[0]][vecColumn[0]];
+                matrix[vecLine[0]][vecColumn[0]] = matrix[vecLine[1]][vecColumn[1]];
+                matrix[vecLine[1]][vecColumn[1]] = matrix[vecLine[2]][vecColumn[2]];
+                matrix[vecLine[2]][vecColumn[2]] = matrix[vecLine[3]][vecColumn[3]];
+                matrix[vecLine[3]][vecColumn[3]] = matrix[vecLine[4]][vecColumn[4]];
+                matrix[vecLine[4]][vecColumn[4]] = ' ';
+            }
+            else if(matrix[vecLine[0] - 1][vecColumn[0]] == ' ' && vecLine[0] - 1 >= 0)
+            {
+                matrix[vecLine[0] - 1][vecColumn[0]] = matrix[vecLine[0]][vecColumn[0]];
+                matrix[vecLine[0]][vecColumn[0]] = matrix[vecLine[1]][vecColumn[1]];
+                matrix[vecLine[1]][vecColumn[1]] = matrix[vecLine[2]][vecColumn[2]];
+                matrix[vecLine[2]][vecColumn[2]] = matrix[vecLine[3]][vecColumn[3]];
+                matrix[vecLine[3]][vecColumn[3]] = matrix[vecLine[4]][vecColumn[4]];
+                matrix[vecLine[4]][vecColumn[4]] = ' ';
+            }
+            else
+            {
+                printf("\nThe snake got stuck. Game Over!\n");
+                return;
+            }
+        }
 
-    if(movement == 0)
+        for(int i = 0; i < boardSIZE; i++)
+        {
+            printf("\n");
+            for(int j = 0; j < boardSIZE; j++)
+            {
+            printf("|%c|", matrix[i][j]);
+            }
+        }
     }
 }
 
@@ -455,6 +501,7 @@ int main()
     setlocale(LC_ALL,"");
     int option = 0;
     char board[boardSIZE][boardSIZE];
+    srand(time(NULL));
 
     for(int i = 0; i < boardSIZE; i++)
     {
