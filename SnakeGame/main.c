@@ -402,40 +402,29 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
     {
     sleep(1);
     //system("cls");
-    pos = 0;
+    pos = 1;
 
         //Checks the positions the snake is in
         for(int i = 0; i < boardSIZE; i++)
         {
             for(int j = 0; j < boardSIZE; j++)
             {
-                if(pos == 0)
-                {
                     if(matrix[i][j] == 'C')
                     {
-                        vecLine[pos] = i;
-                        vecColumn[pos] = j;
-                        pos++;
+                        vecLine[0] = i;
+                        vecColumn[0] = j;
                     }
-                }
-                else if(pos >= 1 && pos <= 3)
-                {
-                    if(matrix[i][j] == '*')
+                    else if(matrix[i][j] == '*')
                     {
                         vecLine[pos] = i;
                         vecColumn[pos] = j;
                         pos++;
                     }
-                }
-                else
-                {
-                    if(matrix[i][j] == '.')
+                    else if(matrix[i][j] == '.')
                     {
-                        vecLine[pos] = i;
-                        vecColumn[pos] = j;
-                        pos++;
+                        vecLine[4] = i;
+                        vecColumn[4] = j;
                     }
-                }
             }
         }
         movement = 0;
