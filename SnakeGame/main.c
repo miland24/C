@@ -6,6 +6,8 @@
 #define boardSIZE 10
 #define snakeSIZE 5
 
+int option = 0, hLine, hColumn, vecPosLine[4], vecPosColumn[4];
+
 int menu(char matrix[boardSIZE][boardSIZE])
 {
     int option;
@@ -105,7 +107,7 @@ void specifyObstacles(char matrix[boardSIZE][boardSIZE])
     system("cls");
 }
 
-void initialPosition(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecPL[4], int vecPC[4])
+void initialPosition(char matrix[boardSIZE][boardSIZE])
 {
     int pLine = -1, pColumn = -1;
 
@@ -172,8 +174,8 @@ void initialPosition(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecP
                     if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
                     {
                         matrix[pLine][pColumn] = 'C';
-                        hL = pLine;
-                        hC = pColumn;
+                        hLine = pLine;
+                        hColumn = pColumn;
                         fflush(stdin);
                     }
                     else
@@ -202,8 +204,8 @@ void initialPosition(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecP
                     if(matrix[pLine][pColumn + 1] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
                     {
                         matrix[pLine][pColumn] = 'C';
-                        hL = pLine;
-                        hC = pColumn;
+                        hLine = pLine;
+                        hColumn = pColumn;
                         fflush(stdin);
                     }
                     else
@@ -232,8 +234,8 @@ void initialPosition(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecP
                     if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn + 1] == ' ' || matrix[pLine - 1][pColumn] == ' ')
                     {
                         matrix[pLine][pColumn] = 'C';
-                        hL = pLine;
-                        hC = pColumn;
+                        hLine = pLine;
+                        hColumn = pColumn;
                         fflush(stdin);
                     }
                     else
@@ -262,8 +264,8 @@ void initialPosition(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecP
                     if(matrix[pLine + 1][pColumn] == ' ' || matrix[pLine][pColumn - 1] == ' ' || matrix[pLine][pColumn + 1] == ' ')
                     {
                         matrix[pLine][pColumn] = 'C';
-                        hL = pLine;
-                        hC = pColumn;
+                        hLine = pLine;
+                        hColumn = pColumn;
                         fflush(stdin);
                     }
                     else
@@ -315,29 +317,29 @@ void initialPosition(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecP
             if((matrix[pLine][pColumn + 1] == ' ') && (pColumn + 1 < boardSIZE))
             {
                 matrix[pLine][pColumn + 1] = '*';
-                vecPL[i] = pLine;
-                vecPC[i] = pColumn + 1;
+                vecPosLine[i - 1] = pLine;
+                vecPosColumn[i - 1] = pColumn + 1;
                 pColumn += 1;
             }
             else if((matrix[pLine + 1][pColumn] == ' ') && (pLine + 1 < boardSIZE))
             {
                 matrix[pLine + 1][pColumn] = '*';
-                vecPL[i] = pLine + 1;
-                vecPC[i] = pColumn;
+                vecPosLine[i - 1] = pLine + 1;
+                vecPosColumn[i - 1] = pColumn;
                 pLine += 1;
             }
             else if((matrix[pLine][pColumn - 1] == ' ') && (pColumn - 1 >= 0))
             {
                 matrix[pLine][pColumn - 1] = '*';
-                vecPL[i] = pLine;
-                vecPC[i] = pColumn - 1;
+                vecPosLine[i - 1] = pLine;
+                vecPosColumn[i - 1] = pColumn - 1;
                 pColumn -= 1;
             }
             else if((matrix[pLine - 1][pColumn] == ' ') && (pLine - 1 >= 0))
             {
                 matrix[pLine - 1][pColumn] = '*';
-                vecPL[i] = pLine - 1;
-                vecPC[i] = pColumn;
+                vecPosLine[i - 1] = pLine - 1;
+                vecPosColumn[i - 1] = pColumn;
                 pLine -= 1;
             }
             else
@@ -345,34 +347,32 @@ void initialPosition(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecP
                 printf("Invalid position, choose another one.\n");
                 return;
             }
-            printf("\n%i, %i", vecPL[i], vecPC[i]);
-            sleep(5);
         }
         else
         {
             if((matrix[pLine][pColumn + 1] == ' ') && (pColumn + 1 < boardSIZE))
             {
                 matrix[pLine][pColumn + 1] = '.';
-                vecPL[i] = pLine;
-                vecPC[i] = pColumn + 1;
+                vecPosLine[i - 1] = pLine;
+                vecPosColumn[i - 1] = pColumn + 1;
             }
             else if((matrix[pLine + 1][pColumn] == ' ') && (pLine + 1 < boardSIZE))
             {
                 matrix[pLine + 1][pColumn] = '.';
-                vecPL[i] = pLine + 1;
-                vecPC[i] = pColumn;
+                vecPosLine[i - 1] = pLine + 1;
+                vecPosColumn[i - 1] = pColumn;
             }
             else if((matrix[pLine][pColumn - 1] == ' ') && (pColumn - 1 >= 0))
             {
                 matrix[pLine][pColumn - 1] = '.';
-                vecPL[i] = pLine;
-                vecPC[i] = pColumn - 1;
+                vecPosLine[i - 1] = pLine;
+                vecPosColumn[i - 1] = pColumn - 1;
             }
             else if((matrix[pLine - 1][pColumn] == ' ') && (pLine - 1 >= 0))
             {
                 matrix[pLine - 1][pColumn] = '.';
-                vecPL[i] = pLine - 1;
-                vecPC[i] = pColumn;
+                vecPosLine[i - 1] = pLine - 1;
+                vecPosColumn[i - 1] = pColumn;
             }
             else
             {
@@ -384,7 +384,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecP
     system("cls");
 }
 
-void snakeMovement(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecPL[4], int vecPC[4])
+void snakeMovement(char matrix[boardSIZE][boardSIZE])
 {
     int vecLine[snakeSIZE], vecColumn[snakeSIZE], nMovements = - 1, movement;
     srand(time(NULL));
@@ -397,14 +397,6 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecPL[
         {
         printf("|%c|", matrix[i][j]);
         }
-    }
-
-    printf("\n%i, %i\n", hL, hC);
-
-    for(int i = 0; i < 4; i++)
-    {
-    printf("%i", vecPL[i]);
-    printf("%i", vecPC[i]);
     }
 
     //Checks if the movements value is valid and stores it
@@ -436,35 +428,7 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecPL[
     {
     sleep(1);
     //system("cls");
-<<<<<<< HEAD
-    pos = 1;
 
-        //Checks the positions the snake is in
-        for(int i = 0; i < boardSIZE; i++)
-        {
-            for(int j = 0; j < boardSIZE; j++)
-            {
-                    if(matrix[i][j] == 'C')
-                    {
-                        vecLine[0] = i;
-                        vecColumn[0] = j;
-                    }
-                    else if(matrix[i][j] == '*')
-                    {
-                        vecLine[pos] = i;
-                        vecColumn[pos] = j;
-                        pos++;
-                    }
-                    else if(matrix[i][j] == '.')
-                    {
-                        vecLine[4] = i;
-                        vecColumn[4] = j;
-                    }
-            }
-        }
-=======
-
->>>>>>> c3dd43a0b4accb673e3298187097d77e67de0aa2
         movement = 0;
 
         /*if(movement == 0)
@@ -506,7 +470,6 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE], int hL, int hC, int vecPL[
 int main()
 {
     setlocale(LC_ALL,"");
-    int option = 0, hLine = 0, hColumn = 0, vecPosLine[4] = {0, 0, 0, 0}, vecPosColumn[4] = {0, 0, 0, 0};
     char board[boardSIZE][boardSIZE];
     srand(time(NULL));
 
@@ -529,11 +492,11 @@ int main()
             break;
 
             case 2:
-            initialPosition(board, hLine, hColumn, vecPosLine, vecPosColumn);
+            initialPosition(board);
             break;
 
             case 3:
-            snakeMovement(board, hLine, hColumn, vecPosLine, vecPosColumn);
+            snakeMovement(board);
             break;
 
             case 4:
