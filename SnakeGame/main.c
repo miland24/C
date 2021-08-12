@@ -431,7 +431,7 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
 
         movement = 0;
 
-        /*if(movement == 0)
+        if(movement == 0)
         {
             if(matrix[vecLine[0]][vecColumn[0] + 1] == ' ' && vecColumn[0] + 1 < boardSIZE)
             {
@@ -454,7 +454,7 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                 printf("\nThe snake got stuck. Game Over!\n");
                 return;
             }
-        }*/
+        }
 
         for(int i = 0; i < boardSIZE; i++)
         {
