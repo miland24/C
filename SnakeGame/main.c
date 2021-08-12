@@ -6,7 +6,7 @@
 #define boardSIZE 10
 #define snakeSIZE 5
 
-int option = 0, hLine, hColumn, vecPosLine[4], vecPosColumn[4];
+int hLine, hColumn, vecPosLine[4], vecPosColumn[4];
 
 int menu(char matrix[boardSIZE][boardSIZE])
 {
@@ -386,7 +386,8 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
 
 void snakeMovement(char matrix[boardSIZE][boardSIZE])
 {
-    int vecLine[snakeSIZE], vecColumn[snakeSIZE], nMovements = - 1, movement;
+    int vecLine[4], vecColumn[4], nMovements = - 1, visitedSquares = 0, movement;
+    char aux[boardSIZE][boardSIZE];
     srand(time(NULL));
 
     //Prints the matrix
@@ -398,6 +399,19 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
         printf("|%c|", matrix[i][j]);
         }
     }
+
+    //checks where the snake is, adds a flag in the squares she's in on the auxiliar matrix.
+    for(int i = 0; i < boardSIZE; i++)
+    {
+        for(int j = 0; j < boardSIZE; j++)
+        {
+            if(matrix[i][j] != ' ' && matrix[i][j] != 'X')
+            {
+                aux[i][j] = 'V';
+            }
+        }
+    }
+
 
     //Checks if the movements value is valid and stores it
     printf("\nHow many movements you wish the snake to make? ");
@@ -427,31 +441,514 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
     for(int interactions = 0; interactions < nMovements; interactions++)
     {
     sleep(1);
-    //system("cls");
+    system("cls");
 
-        movement = 0;
+        movement = rand() % 3;
 
-        if(movement == 0)
+        switch(movement)
         {
-            if(matrix[vecLine[0]][vecColumn[0] + 1] == ' ' && vecColumn[0] + 1 < boardSIZE)
+            //snake movement logic
+            case 0:
+                if(matrix[hLine][hColumn + 1] == ' ' && hColumn + 1 < boardSIZE)
+                {
+                    matrix[hLine][hColumn + 1] = 'C';
+                    matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                    vecLine[0] = hLine;
+                    vecColumn[0] = hColumn;
+                    vecLine[1] = vecPosLine[0];
+                    vecColumn[1] = vecPosColumn[0];
+                    vecLine[2] = vecPosLine[1];
+                    vecColumn[2] = vecPosColumn[1];
+                    vecLine[3] = vecPosLine[2];
+                    vecColumn[3] = vecPosColumn[2];
+                    matrix[vecLine[0]][vecColumn[0]] = '*';
+                    matrix[vecLine[1]][vecColumn[1]] = '*';
+                    matrix[vecLine[2]][vecColumn[2]] = '*';
+                    matrix[vecLine[3]][vecColumn[3]] = '.';
+                    vecPosLine[0] = vecLine[0];
+                    vecPosColumn[0] = vecColumn[0];
+                    vecPosLine[1] = vecLine[1];
+                    vecPosColumn[1] = vecColumn[1];
+                    vecPosLine[2] = vecLine[2];
+                    vecPosColumn[2] = vecColumn[2];
+                    vecPosLine[3] = vecLine[3];
+                    vecPosColumn[3] = vecColumn[3];
+                    hColumn++;
+                    aux[hLine][hColumn] = 'V';
+                }
+                else if(matrix[hLine + 1][hColumn] == ' ' && hLine + 1 < boardSIZE)
+                {
+                    matrix[hLine + 1][hColumn] = 'C';
+                    matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                    vecLine[0] = hLine;
+                    vecColumn[0] = hColumn;
+                    vecLine[1] = vecPosLine[0];
+                    vecColumn[1] = vecPosColumn[0];
+                    vecLine[2] = vecPosLine[1];
+                    vecColumn[2] = vecPosColumn[1];
+                    vecLine[3] = vecPosLine[2];
+                    vecColumn[3] = vecPosColumn[2];
+                    matrix[vecLine[0]][vecColumn[0]] = '*';
+                    matrix[vecLine[1]][vecColumn[1]] = '*';
+                    matrix[vecLine[2]][vecColumn[2]] = '*';
+                    matrix[vecLine[3]][vecColumn[3]] = '.';
+                    vecPosLine[0] = vecLine[0];
+                    vecPosColumn[0] = vecColumn[0];
+                    vecPosLine[1] = vecLine[1];
+                    vecPosColumn[1] = vecColumn[1];
+                    vecPosLine[2] = vecLine[2];
+                    vecPosColumn[2] = vecColumn[2];
+                    vecPosLine[3] = vecLine[3];
+                    vecPosColumn[3] = vecColumn[3];
+                    hLine++;
+                    aux[hLine][hColumn] = 'V';
+                }
+                else if(matrix[hLine][hColumn - 1] == ' ' && hColumn - 1 >= 0)
+                {
+                    matrix[hLine][hColumn - 1] = 'C';
+                    matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                    vecLine[0] = hLine;
+                    vecColumn[0] = hColumn;
+                    vecLine[1] = vecPosLine[0];
+                    vecColumn[1] = vecPosColumn[0];
+                    vecLine[2] = vecPosLine[1];
+                    vecColumn[2] = vecPosColumn[1];
+                    vecLine[3] = vecPosLine[2];
+                    vecColumn[3] = vecPosColumn[2];
+                    matrix[vecLine[0]][vecColumn[0]] = '*';
+                    matrix[vecLine[1]][vecColumn[1]] = '*';
+                    matrix[vecLine[2]][vecColumn[2]] = '*';
+                    matrix[vecLine[3]][vecColumn[3]] = '.';
+                    vecPosLine[0] = vecLine[0];
+                    vecPosColumn[0] = vecColumn[0];
+                    vecPosLine[1] = vecLine[1];
+                    vecPosColumn[1] = vecColumn[1];
+                    vecPosLine[2] = vecLine[2];
+                    vecPosColumn[2] = vecColumn[2];
+                    vecPosLine[3] = vecLine[3];
+                    vecPosColumn[3] = vecColumn[3];
+                    hColumn--;
+                    aux[hLine][hColumn] = 'V';
+                }
+                else if(matrix[hLine - 1][hColumn] == ' ' && hLine - 1 >= 0)
+                {
+                    matrix[hLine - 1][hColumn] = 'C';
+                    matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                    vecLine[0] = hLine;
+                    vecColumn[0] = hColumn;
+                    vecLine[1] = vecPosLine[0];
+                    vecColumn[1] = vecPosColumn[0];
+                    vecLine[2] = vecPosLine[1];
+                    vecColumn[2] = vecPosColumn[1];
+                    vecLine[3] = vecPosLine[2];
+                    vecColumn[3] = vecPosColumn[2];
+                    matrix[vecLine[0]][vecColumn[0]] = '*';
+                    matrix[vecLine[1]][vecColumn[1]] = '*';
+                    matrix[vecLine[2]][vecColumn[2]] = '*';
+                    matrix[vecLine[3]][vecColumn[3]] = '.';
+                    vecPosLine[0] = vecLine[0];
+                    vecPosColumn[0] = vecColumn[0];
+                    vecPosLine[1] = vecLine[1];
+                    vecPosColumn[1] = vecColumn[1];
+                    vecPosLine[2] = vecLine[2];
+                    vecPosColumn[2] = vecColumn[2];
+                    vecPosLine[3] = vecLine[3];
+                    vecPosColumn[3] = vecColumn[3];
+                    hLine--;
+                    aux[hLine][hColumn] = 'V';
+                }
+                else
+                {
+                    printf("\nThe snake got stuck. Game Over!\n");
+                    for(int i = 0; i < boardSIZE; i++)
+                    {
+                        for(int j = 0; j < boardSIZE; j++)
+                        {
+                            if(aux[i][j] == 'V')
+                            {
+                                visitedSquares++;
+                            }
+                        }
+                    }
+                    printf("Number of unique squares the snake has visited: %i", visitedSquares);
+                    return;
+                }
+        break;
+        case 1:
+            if(matrix[hLine + 1][hColumn] == ' ' && hLine + 1 < boardSIZE)
             {
-
+                matrix[hLine + 1][hColumn] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hLine++;
+                aux[hLine][hColumn] = 'V';
             }
-            else if(matrix[vecLine[0] + 1][vecColumn[0]] == ' ' && vecLine[0] + 1 < boardSIZE)
+            else if(matrix[hLine][hColumn + 1] == ' ' && hColumn + 1 < boardSIZE)
             {
-
+                matrix[hLine][hColumn + 1] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hColumn++;
+                aux[hLine][hColumn] = 'V';
             }
-            else if(matrix[vecLine[0]][vecColumn[0] - 1] == ' ' && vecColumn[0] - 1 >= 0)
+            else if(matrix[hLine][hColumn - 1] == ' ' && hColumn - 1 >= 0)
             {
-
+                matrix[hLine][hColumn - 1] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hColumn--;
+                aux[hLine][hColumn] = 'V';
             }
-            else if(matrix[vecLine[0] - 1][vecColumn[0]] == ' ' && vecLine[0] - 1 >= 0)
+            else if(matrix[hLine - 1][hColumn] == ' ' && hLine - 1 >= 0)
             {
-
+                matrix[hLine - 1][hColumn] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hLine--;
+                aux[hLine][hColumn] = 'V';
             }
             else
             {
                 printf("\nThe snake got stuck. Game Over!\n");
+                for(int i = 0; i < boardSIZE; i++)
+                {
+                    for(int j = 0; j < boardSIZE; j++)
+                    {
+                        if(aux[i][j] == 'V')
+                        {
+                            visitedSquares++;
+                        }
+                    }
+                }
+                printf("Number of unique squares the snake has visited: %i", visitedSquares);
+                return;
+            }
+        break;
+        case 2:
+            if(matrix[hLine][hColumn - 1] == ' ' && hColumn - 1 >= 0)
+            {
+                matrix[hLine][hColumn - 1] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hColumn--;
+                aux[hLine][hColumn] = 'V';
+            }
+            else if(matrix[hLine + 1][hColumn] == ' ' && hLine + 1 < boardSIZE)
+            {
+                matrix[hLine + 1][hColumn] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hLine++;
+                aux[hLine][hColumn] = 'V';
+            }
+            else if(matrix[hLine][hColumn + 1] == ' ' && hColumn + 1 < boardSIZE)
+            {
+                matrix[hLine][hColumn + 1] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hColumn++;
+                aux[hLine][hColumn] = 'V';
+            }
+            else if(matrix[hLine - 1][hColumn] == ' ' && hLine - 1 >= 0)
+            {
+                matrix[hLine - 1][hColumn] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hLine--;
+                aux[hLine][hColumn] = 'V';
+            }
+            else
+            {
+                printf("\nThe snake got stuck. Game Over!\n");
+                for(int i = 0; i < boardSIZE; i++)
+                {
+                    for(int j = 0; j < boardSIZE; j++)
+                    {
+                        if(aux[i][j] == 'V')
+                        {
+                            visitedSquares++;
+                        }
+                    }
+                }
+                printf("Number of unique squares the snake has visited: %i", visitedSquares);
+                return;
+            }
+        break;
+        case 3:
+            if(matrix[hLine - 1][hColumn] == ' ' && hLine - 1 >= 0)
+            {
+                matrix[hLine - 1][hColumn] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hLine--;
+                aux[hLine][hColumn] = 'V';
+            }
+            else if(matrix[hLine][hColumn + 1] == ' ' && hColumn + 1 < boardSIZE)
+            {
+                matrix[hLine][hColumn + 1] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hColumn++;
+                aux[hLine][hColumn] = 'V';
+            }
+            else if(matrix[hLine + 1][hColumn] == ' ' && hLine + 1 < boardSIZE)
+            {
+                matrix[hLine + 1][hColumn] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hLine++;
+                aux[hLine][hColumn] = 'V';
+            }
+            else if(matrix[hLine][hColumn - 1] == ' ' && hColumn - 1 >= 0)
+            {
+                matrix[hLine][hColumn - 1] = 'C';
+                matrix[vecPosLine[3]][vecPosColumn[3]] = ' ';
+                vecLine[0] = hLine;
+                vecColumn[0] = hColumn;
+                vecLine[1] = vecPosLine[0];
+                vecColumn[1] = vecPosColumn[0];
+                vecLine[2] = vecPosLine[1];
+                vecColumn[2] = vecPosColumn[1];
+                vecLine[3] = vecPosLine[2];
+                vecColumn[3] = vecPosColumn[2];
+                matrix[vecLine[0]][vecColumn[0]] = '*';
+                matrix[vecLine[1]][vecColumn[1]] = '*';
+                matrix[vecLine[2]][vecColumn[2]] = '*';
+                matrix[vecLine[3]][vecColumn[3]] = '.';
+                vecPosLine[0] = vecLine[0];
+                vecPosColumn[0] = vecColumn[0];
+                vecPosLine[1] = vecLine[1];
+                vecPosColumn[1] = vecColumn[1];
+                vecPosLine[2] = vecLine[2];
+                vecPosColumn[2] = vecColumn[2];
+                vecPosLine[3] = vecLine[3];
+                vecPosColumn[3] = vecColumn[3];
+                hColumn--;
+                aux[hLine][hColumn] = 'V';
+            }
+            else
+            {
+                printf("\nThe snake got stuck. Game Over!\n");
+                for(int i = 0; i < boardSIZE; i++)
+                {
+                    for(int j = 0; j < boardSIZE; j++)
+                    {
+                        if(aux[i][j] == 'V')
+                        {
+                            visitedSquares++;
+                        }
+                    }
+                }
+                printf("Number of unique squares the snake has visited: %i", visitedSquares);
                 return;
             }
         }
@@ -465,11 +962,26 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
             }
         }
     }
+    system("cls");
+    printf("The snake has done all the movements successfully!\n");
+    for(int i = 0; i < boardSIZE; i++)
+    {
+        for(int j = 0; j < boardSIZE; j++)
+        {
+            if(aux[i][j] == 'V')
+            {
+                visitedSquares++;
+            }
+        }
+    }
+    printf("Number of unique squares the snake has visited: %i\n\n", visitedSquares);
 }
+
 
 int main()
 {
     setlocale(LC_ALL,"");
+    int option = 0;
     char board[boardSIZE][boardSIZE];
     srand(time(NULL));
 
@@ -500,7 +1012,7 @@ int main()
             break;
 
             case 4:
-            printf("GG!");
+            printf("\n\nGoodbye! GG! :D\n\n");
             break;
         }
     }
