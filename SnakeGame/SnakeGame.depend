@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1628565788 source:c:\users\vale_\desktop\c language\snakegame\main.c
+1628737023 source:c:\users\vale_\desktop\c language\snakegame\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	<time.h>
 	<unistd.h>
 
-1628558842 source:c:\users\matheusm\desktop\c\snakegame\main.c
+1628813933 source:c:\users\matheusm\desktop\c\snakegame\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
