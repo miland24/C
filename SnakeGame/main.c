@@ -1,4 +1,4 @@
-#include <stdio.h>                                         /*Author: Matheus Miland Pimentl do Vale ------- E-mail: matheus.miland@gmail.com*/
+#include <stdio.h>                                                          //Author: Matheus Miland Pimentel do Vale -------------------------------- e-mail: matheus.miland@gmail.com
 #include <stdlib.h>
 #include <locale.h>
 #include <time.h>
@@ -386,8 +386,7 @@ void initialPosition(char matrix[boardSIZE][boardSIZE])
 
 void snakeMovement(char matrix[boardSIZE][boardSIZE])
 {
-    int vecLine[4], vecColumn[4], nMovements = - 1, visitedSquares = 0, snakeE = 0, movement;
-    float refreshRate;
+    int vecLine[4], vecColumn[4], nMovements = - 1, visitedSquares = 0, snakeE = 0, speed = -1, movement;
     char aux[boardSIZE][boardSIZE];
     srand(time(NULL));
 
@@ -470,19 +469,19 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
 
     printf("Type the speed you wish the snake to move(the lesser the faster she'll move):");
     fflush(stdin);
-    scanf("%f", &refreshRate);
+    scanf("%i", &speed);
 
-    while(refreshRate < 0)
+    while(speed < 0)
     {
-    printf("the speed must be more than 0: ");
+    printf("the speed must be more than or equal to 0: ");
     fflush(stdin);
-    scanf("%f", &refreshRate);
+    scanf("%i", &speed);
     }
 
     //Generates a random number for the snake to move. Also checks for obstacles and the end of the board
     for(int interactions = 0; interactions < nMovements; interactions++)
     {
-    sleep(refreshRate);
+    sleep(speed);
 
     system("cls");
 
@@ -602,7 +601,7 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                 }
                 else
                 {
-                    printf("\nThe snake got stuck. Game Over!\n");
+                    printf("The snake got stuck. Game Over!\n\n");
                     for(int i = 0; i < boardSIZE; i++)
                     {
                         for(int j = 0; j < boardSIZE; j++)
@@ -613,8 +612,8 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                             }
                         }
                     }
-                    printf("Number of unique squares the snake has visited: %i\n\n", visitedSquares);
-                    printf("\n");
+                    printf("Number of unique squares the snake has visited: %i\n", visitedSquares);
+                    printf("Number of unique squares the snake hasn't visited: %i\n\n", 100 - visitedSquares);
                     return;
                 }
             break;
@@ -729,7 +728,7 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                 }
                 else
                 {
-                    printf("\nThe snake got stuck. Game Over!\n");
+                    printf("The snake got stuck. Game Over!\n");
                     for(int i = 0; i < boardSIZE; i++)
                     {
                         for(int j = 0; j < boardSIZE; j++)
@@ -740,8 +739,8 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                             }
                         }
                     }
-                    printf("Number of unique squares the snake has visited: %i\n\n", visitedSquares);
-                    printf("\n");
+                    printf("Number of unique squares the snake has visited: %i\n", visitedSquares);
+                    printf("Number of unique squares the snake hasn't visited: %i\n\n", 100 - visitedSquares);
                     return;
                 }
             break;
@@ -856,7 +855,7 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                 }
                 else
                 {
-                    printf("\nThe snake got stuck. Game Over!\n");
+                    printf("The snake got stuck. Game Over!\n\n");
                     for(int i = 0; i < boardSIZE; i++)
                     {
                         for(int j = 0; j < boardSIZE; j++)
@@ -867,8 +866,8 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                             }
                         }
                     }
-                    printf("Number of unique squares the snake has visited: %i\n\n", visitedSquares);
-                    printf("\n");
+                    printf("Number of unique squares the snake has visited: %i\n", visitedSquares);
+                    printf("Number of unique squares the snake hasn't visited: %i\n\n", 100 - visitedSquares);
                     return;
                 }
             break;
@@ -983,7 +982,7 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                 }
                 else
                 {
-                    printf("\nThe snake got stuck. Game Over!\n");
+                    printf("The snake got stuck. Game Over!\n\n");
                     for(int i = 0; i < boardSIZE; i++)
                     {
                         for(int j = 0; j < boardSIZE; j++)
@@ -995,7 +994,7 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
                         }
                     }
                     printf("Number of unique squares the snake has visited: %i\n", visitedSquares);
-                    printf("\n");
+                    printf("Number of unique squares the snake hasn't visited: %i\n\n", 100 - visitedSquares);
                     return;
                 }
             break;
@@ -1011,7 +1010,7 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
         }
     }
     system("cls");
-    printf("The snake has done all the movements successfully!\n");
+    printf("The snake has done all the movements successfully!\n\n");
     for(int i = 0; i < boardSIZE; i++)
     {
         for(int j = 0; j < boardSIZE; j++)
@@ -1022,7 +1021,8 @@ void snakeMovement(char matrix[boardSIZE][boardSIZE])
             }
         }
     }
-    printf("Number of unique squares the snake has visited: %i\n\n", visitedSquares);
+    printf("Number of unique squares the snake has visited: %i\n", visitedSquares);
+    printf("Number of unique squares the snake hasn't visited: %i\n\n", 100 - visitedSquares);
 }
 
 
@@ -1060,7 +1060,7 @@ int main()
             break;
 
             case 4:
-            printf("\n\nGoodbye! GG! :D\n\n");
+            printf("\n\nGoodbye! :D\n\n");
             break;
         }
     }
