@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1627875223 source:c:\users\vale_\desktop\c language\ex25_structures\main.c
-	<stdio.h>
-	<stdlib.h>
-	<locale.h>
-	<string.h>
-
