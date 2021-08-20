@@ -23,9 +23,9 @@ int main()
     printf("Type the second number: ");
     scanf("%i", &b);
 
-    sum = operation(a, b);
+    sum = operation(&a, &b);
 
-    printf("\nNumbers sum: %i", sum);
+    printf("\nNumbers sum: %i\n", sum);
 
     return 0;
 }
