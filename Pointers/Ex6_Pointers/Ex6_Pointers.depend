@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1629417154 source:c:\users\matheusm\desktop\c\pointers\ex6_pointers\main.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+
