@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1629857902 source:c:\users\vale_\desktop\c language\dynamic allocation\ex2_dynamicallocation\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
