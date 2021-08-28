@@ -2,13 +2,22 @@
 #include <stdlib.h>
 #include "product.h"
 
+typedef struct st_product
+{
+    int code, qty;
+    char name[50];
+    float price;
+} product;
+
 product* r_products(int N)
 {
     product* p;
     int i;
 
+    //Allocates memory for the number of products the user defined.
     p = (product*) malloc(N * sizeof(product));
 
+    //Gets all the information about all the products the user defined.
     for(i = 0; i < N; i++)
     {
         printf("\nType the name of the [%i]ish product: ", i + 1);
@@ -29,12 +38,13 @@ int hValue(int N, product* p)
 {
     int i, index = 0, mValuable = 0;
 
+    //Checks the list of products for the most valuable product, then it stores and returns the index of the vector the product's in.
     for(i = 0; i < N; i++)
     {
         if(mValuable < p[i].price)
         {
-            mValuable = p[i].price;
-            index = i;
+            mValuable = p[i].price; //stores the highest price in this variable.
+            index = i; //index of the vector the product's in.
         }
     }
     return index;
@@ -44,12 +54,13 @@ int hQty(int N, product* p)
 {
     int i, index = 0, lQty = 0;
 
+    //Checks the list of products for the product in largest quantity, then it stores and returns the index of the vector the product's in.
     for(i = 0; i < N; i++)
     {
         if(lQty < p[i].qty)
         {
-            lQty = p[i].qty;
-            index = i;
+            lQty = p[i].qty; //stores the largest quantity in this variable.
+            index = i; //index of the vector the product's in.
         }
     }
     return index;
