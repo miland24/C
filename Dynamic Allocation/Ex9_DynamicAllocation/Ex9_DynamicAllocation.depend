@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1630103302 source:c:\users\matheusm\desktop\c\dynamic allocation\ex9_dynamicallocation\main.c
+	<stdio.h>
+	<stdlib.h>
+	"product.h"
+
+1630103711 source:c:\users\matheusm\desktop\c\dynamic allocation\ex9_dynamicallocation\product.c
+	<stdio.h>
+	<stdlib.h>
+	"product.h"
+
+1630103286 c:\users\matheusm\desktop\c\dynamic allocation\ex9_dynamicallocation\product.h
+

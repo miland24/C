@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1630091348 source:c:\users\matheusm\desktop\c\dynamic allocation\ex8_dynamicallocation\main.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	"vector.h"
+
+1630090764 source:c:\users\matheusm\desktop\c\dynamic allocation\ex8_dynamicallocation\vector.c
+	<stdlib.h>
+	<stdio.h>
+	"vector.h"
+
+1630091137 c:\users\matheusm\desktop\c\dynamic allocation\ex8_dynamicallocation\vector.h
+
