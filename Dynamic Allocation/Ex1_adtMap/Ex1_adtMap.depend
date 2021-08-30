@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1630296180 source:c:\users\vale_\desktop\c language\dynamic allocation\ex1_adtmap\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Map.h"
+
+1630285571 c:\users\vale_\desktop\c language\dynamic allocation\ex1_adtmap\map.h
+
+1630296233 source:c:\users\vale_\desktop\c language\dynamic allocation\ex1_adtmap\map.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Map.h"
+
