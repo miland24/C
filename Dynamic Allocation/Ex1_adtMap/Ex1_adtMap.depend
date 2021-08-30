@@ -12,3 +12,16 @@
 	<string.h>
 	"Map.h"
 
+1630333048 source:c:\users\matheusm\desktop\c\dynamic allocation\ex1_adtmap\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Map.h"
+
+1630333048 c:\users\matheusm\desktop\c\dynamic allocation\ex1_adtmap\map.h
+
+1630354712 source:c:\users\matheusm\desktop\c\dynamic allocation\ex1_adtmap\map.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Map.h"
+
