@@ -24,17 +24,25 @@ void start_map (Map* mp)
 // Inserts an item with term s and counter = 1
 void insert_term (Map* mp, char* s)
 {
+    int x = 0;
+
+    x = strlen(s);
+    x++;
+
     if(increment(mp, s) == 0)
         return;
 
     if(mp -> total / BLOCK == mp -> blocks)
     {
-        mp -> lst = (Item**) realloc(mp -> lst, (BLOCK * mp -> blocks) + BLOCK * sizeof(Item*));
+        mp -> lst = (Item**) realloc(mp -> lst, (BLOCK * mp -> blocks + BLOCK) * sizeof(Item*));
         mp -> blocks++;
     }
     mp -> lst[mp -> total] = (Item*) malloc(sizeof(Item));
 
-    mp -> lst[mp -> total] -> term = s;
+    mp -> lst[mp -> total] -> term = (char*) malloc(x * sizeof(char));
+
+    strcpy(mp -> lst[mp -> total] -> term, s);
+
     mp -> lst[mp -> total] -> cont = 1;
 
     mp -> total++;
