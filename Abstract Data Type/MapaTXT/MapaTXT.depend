@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1630368733 source:g:\documentos\faculdade ead\ed codeblocks\mapatxt\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<ctype.h>
+	"Map.h"
+
+1630368984 source:g:\documentos\faculdade ead\ed codeblocks\mapatxt\map.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Map.h"
+
+1630289444 g:\documentos\faculdade ead\ed codeblocks\mapatxt\map.h
+
+1630368984 source:c:\users\vale_\desktop\mapatxt\map.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Map.h"
+
+1630289444 c:\users\vale_\desktop\mapatxt\map.h
+
+1630459895 source:c:\users\vale_\desktop\mapatxt\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<ctype.h>
+	"Map.h"
+
