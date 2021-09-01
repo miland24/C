@@ -4,7 +4,6 @@
 #include "Map.h"
 #define BLOCK 10
 
-
 // Starts a new map
 void start_map (Map* mp)
 {
