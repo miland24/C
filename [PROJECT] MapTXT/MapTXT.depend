@@ -31,7 +31,7 @@
 	<ctype.h>
 	"Map.h"
 
-1630464591 source:c:\users\vale_\desktop\c language\abstract data type\maptxt\main.c
+1630464662 source:c:\users\vale_\desktop\c language\abstract data type\maptxt\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -39,9 +39,9 @@
 	<ctype.h>
 	"Map.h"
 
-1630460416 c:\users\vale_\desktop\c language\abstract data type\maptxt\map.h
+1630464662 c:\users\vale_\desktop\c language\abstract data type\maptxt\map.h
 
-1630460416 source:c:\users\vale_\desktop\c language\abstract data type\maptxt\map.c
+1630464662 source:c:\users\vale_\desktop\c language\abstract data type\maptxt\map.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

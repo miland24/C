@@ -31,6 +31,16 @@ product* r_products(int N)
         scanf("%f", &(p + i) -> price);
     }
 
+        printf("\nType the name of the [%i]ish product: ", i + 1);
+        fflush(stdin);
+        scanf("%s", (p + N) -> name);
+        printf("\nType the code of the [%i]ish product: ", i + 1);
+        scanf("%i", &(p + N) -> code);
+        printf("\nType the quantity of the [%i]ish product: ", i + 1);
+        scanf("%i", &(p + N) -> qty);
+        printf("\nType the price of the [%i]ish product: ", i + 1);
+        scanf("%f", &(p + N) -> price);
+
     return p;
 }
 
