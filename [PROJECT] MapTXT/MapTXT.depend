@@ -47,3 +47,19 @@
 	<string.h>
 	"Map.h"
 
+1688344610 source:c:\users\vale_\onedrive\Área de trabalho\c-master\[project] maptxt\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<ctype.h>
+	"Map.h"
+
+1688341536 c:\users\vale_\onedrive\Área de trabalho\c-master\[project] maptxt\map.h
+
+1688341536 source:c:\users\vale_\onedrive\Área de trabalho\c-master\[project] maptxt\map.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Map.h"
+

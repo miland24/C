@@ -34,6 +34,7 @@ int main()
 
         while(opt<1||opt>6)
         {
+            fflush(stdin);
             scanf("%i", &opt);
             if(opt<1||opt>6)
             {
